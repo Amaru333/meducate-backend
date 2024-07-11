@@ -55,7 +55,6 @@ module.exports = {
           },
         },
       ]);
-      console.log(completedLectures);
       const courseList = completedLectures.map((lecture) => lecture.lecture);
       res.json(courseList);
     } catch (error) {
