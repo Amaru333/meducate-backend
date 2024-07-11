@@ -28,3 +28,9 @@ app.use("/api/user", userRoutes);
 
 const courseRoutes = require("./routes/Course");
 app.use("/api/course", courseRoutes);
+
+const lectureRoutes = require("./routes/Lecture");
+app.use("/api/lecture", lectureRoutes);
+
+const activityRoutes = require("./routes/Activity");
+app.use("/api/activity", activityRoutes);

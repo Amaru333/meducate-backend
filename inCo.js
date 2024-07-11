@@ -19,22 +19,22 @@ const insertData = async () => {
 
   const course = [
     {
-      slug: "how-to-perform-a-surgery",
-      title: "How to perform a surgery",
+      slug: "physical-injuries-and-concussion",
+      title: "Physical injuries and concussion",
       description:
-        "This course explains how to perform a surgery. It is important to follow the correct procedure while performing a surgery. This course will help you understand the steps involved in performing a surgery. Watch the course to know more. Later you can take a quiz to test your knowledge. Good luck!",
+        "Learn about common physical injuries and the impact of concussions on the brain. Discover how to identify and manage these injuries effectively. Gain insights into the symptoms, treatments, and recovery processes for each. Understand the importance of early intervention and proper care to prevent long-term complications. This course is suitable for healthcare professionals, athletes, coaches, and anyone interested in injury prevention and management. Enroll now to enhance your knowledge and skills in this critical area of healthcare.",
       thumbnail: "/images/stock-thumbnail-1.jpg",
       lectures: [
         {
-          lecture: "668e9d8e2868cb8ba42099b7",
+          lecture: "668fd4b8c2246a9807ed4a3a",
           index: 1,
         },
         {
-          lecture: "668e9d8e2868cb8ba42099bc",
+          lecture: "668fd4b8c2246a9807ed4a3e",
           index: 2,
         },
         {
-          lecture: "668e9d8e2868cb8ba42099c1",
+          lecture: "668fd4b8c2246a9807ed4a42",
           index: 3,
         },
       ],

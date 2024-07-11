@@ -30,4 +30,28 @@ module.exports = {
       res.status(500).json({ message: error.message });
     }
   },
+
+  getRecommendedCourses: async (req, res) => {
+    try {
+      const courses = await CourseModel.find().populate({
+        path: "lectures.lecture",
+        model: Lecture,
+      });
+      res.json(courses);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
+
+  getIndividualCourse: async (req, res) => {
+    try {
+      const course = await CourseModel.findOne({ slug: req.params.slug }).populate({
+        path: "lectures.lecture",
+        model: Lecture,
+      });
+      res.json(course);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
 };

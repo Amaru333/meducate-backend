@@ -15,6 +15,7 @@ const courseSchema = new mongoose.Schema(
       ],
       required: true,
     },
+    tag: { type: String, required: true },
   },
   {
     timestamps: true,
