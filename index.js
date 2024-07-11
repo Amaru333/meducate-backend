@@ -15,7 +15,7 @@ app.use(
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
-    app.listen(3004, () => {
+    app.listen(process.env.PORT || 3004, () => {
       console.log("Server has started");
     });
   })
