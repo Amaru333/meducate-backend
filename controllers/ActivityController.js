@@ -5,13 +5,14 @@ const { default: mongoose } = require("mongoose");
 module.exports = {
   addViewingActivity: async (req, res) => {
     try {
-      const { course, lecture } = req.body;
+      const { course, lecture, duration } = req.body;
       const user = req.user._id;
       const courseID = await CourseModel.findOne({ slug: course }).select("_id");
       const viewingActivity = new ViewingActivity({
         user,
         course: courseID._id,
         lecture,
+        duration,
       });
       await viewingActivity.save();
       res.status(201).json({ message: "Viewing activity added successfully" });
