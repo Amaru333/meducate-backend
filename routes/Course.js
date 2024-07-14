@@ -8,6 +8,9 @@ router.get("/user-courses", verifyToken, controller.getUserCourses);
 router.get("/trending", controller.getTrendingCourses);
 router.get("/recommended", verifyToken, controller.getRecommendedCourses);
 router.get("/recently-watched", verifyToken, controller.getRecentlyWatchedCourse);
+router.post("/generate-certificate", verifyToken, controller.finishedCourse);
+router.get("/certificates", verifyToken, controller.getCertificates);
+router.get("/certificate/:id", controller.getIndividualCertificate);
 
 router.get("/:slug", controller.getIndividualCourse);
 

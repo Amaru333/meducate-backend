@@ -1,7 +1,9 @@
 const { default: mongoose } = require("mongoose");
 const CourseModel = require("../models/courseModel");
+const UserModel = require("../models/userModel");
 const Lecture = require("../models/lectureModel");
 const ViewingActivity = require("../models/viewingActivityModel");
+const CertificateModel = require("../models/certificateModel");
 
 module.exports = {
   getUserCourses: async (req, res) => {
@@ -115,6 +117,60 @@ module.exports = {
         lectureToWatch: nextLecture,
         // firstLecture: firstLecture
       });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
+  finishedCourse: async (req, res) => {
+    try {
+      const user = req.user._id;
+      // const course = req.body.course;
+      const courseData = await CourseModel.findOne({ slug: req.body.course });
+      const isCertificatePresent = await CertificateModel.findOne({ user: user, course: courseData._id });
+      if (isCertificatePresent) {
+        return res.status(400).json({ message: "Certificate already generated" });
+      }
+      // const courseData = await CourseModel.findById(course);
+      const description = courseData.certificateData;
+      const newCertificate = new CertificateModel({
+        user: user,
+        course: courseData._id,
+        description: description,
+      });
+      await newCertificate.save();
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
+  getCertificates: async (req, res) => {
+    try {
+      const user = req.user._id;
+      const certificates = await CertificateModel.find({ user: user })
+        .populate({
+          path: "course",
+          model: CourseModel,
+        })
+        .populate({
+          path: "user",
+          model: UserModel,
+        });
+      res.json(certificates);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
+  getIndividualCertificate: async (req, res) => {
+    try {
+      const certificate = await CertificateModel.findById(req.params.id)
+        .populate({
+          path: "course",
+          model: CourseModel,
+        })
+        .populate({
+          path: "user",
+          model: UserModel,
+        });
+      res.json(certificate);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
